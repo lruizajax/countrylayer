@@ -27,6 +27,6 @@ SoapUI, Import the project "REST_CountryLayer.xml" located in the resources/soap
 
 Run tests in Maven 
    ```sh
-   # Run all the unit test classes.
+   # Run all the test classes.
    mvn test
    ```
