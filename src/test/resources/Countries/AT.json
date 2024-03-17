@@ -1,0 +1,19 @@
+{
+    "name": "Austria",
+    "topLevelDomain": [
+        ".at"
+    ],
+    "alpha2Code": "AT",
+    "alpha3Code": "AUT",
+    "callingCodes": [
+        "43"
+    ],
+    "capital": "Vienna",
+    "altSpellings": [
+        "AT",
+        "Österreich",
+        "Osterreich",
+        "Oesterreich"
+    ],
+    "region": "Europe"
+}
