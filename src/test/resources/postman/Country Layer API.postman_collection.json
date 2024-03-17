@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "20266d3d-f765-486a-a41f-fdf12503a832",
+		"name": "Country Layer API",
+		"description": "The access_key\" is setup in Pre-request Script for all Requests\n\n- base_url: to live\n- base_url_mockup: to local testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1023482",
+		"_collection_link": "https://cloudy-robot-3500.postman.co/workspace/6da2ac0b-e10c-4dba-8d77-f8dcb2af4abd/collection/1023482-20266d3d-f765-486a-a41f-fdf12503a832?action=share&source=collection_link&creator=1023482"
+	},
+	"item": [
+		{
+			"name": "get Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test('Response time is less than 500ms', function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"})",
+							"",
+							"pm.test('Status code name has string', function () {",
+							"    pm.response.to.have.status('OK');",
+							"})",
+							"",
+							"pm.test('Test validate alpha2Code is in valid list', () => {",
+							"    pm.expect(jsonData[51].alpha2Code).to.be.oneOf([",
+							"        'DE',",
+							"        'CO',",
+							"        'ES'",
+							"    ]);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get US",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"Created\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"United States of America\");",
+							"});",
+							"",
+							"pm.test(\"Name of Country United States of America\", function(){",
+							"    pm.expect(jsonData.name).to.eql(\"United States of America\");",
+							"})",
+							"",
+							"pm.test(\"Name of Country United States\", function(){",
+							"    pm.expect(jsonData.name).to.eql(\"United States\");",
+							"})",
+							"",
+							"pm.test(\"Response time is less than 100ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/alpha/US",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"alpha",
+						"US"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get DE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Test validate Calling Code\", () => {",
+							"  pm.expect(jsonData.callingCodes[0]).to.eql(\"49\");",
+							"});",
+							"",
+							"pm.test(\"Test validate alpha2Code is in valid list\", () => {",
+							"  pm.expect(jsonData.alpha2Code)",
+							"    .to.be.oneOf([\"DE\", \"PE\", \"ES\"]);",
+							"});",
+							"",
+							"pm.test(\"Test validate altSpellings is in german\", () => {",
+							"  pm.expect(jsonData.altSpellings[2]).to.eql(\"Bundesrepublik Deutschland\");",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/alpha/DE",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"alpha",
+						"DE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get GB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"United Kingdom of Great Britain\");",
+							"});",
+							"",
+							"pm.test(\"Name of Country United Kingdom\", function(){",
+							"    pm.expect(jsonData.name).to.eql(\"United Kingdom of Great Britain and Northern Ireland\");",
+							"})",
+							"",
+							"pm.test(\"Response time is less than 100ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);",
+							"});",
+							"",
+							"pm.test(\"Test validate Calling Code\", () => {",
+							"  pm.expect(jsonData.callingCodes[0]).to.eql(\"44\");",
+							"});",
+							"",
+							"pm.test(\"Test validate alpha2Code is in valid list\", () => {",
+							"  pm.expect(jsonData.alpha2Code)",
+							"    .to.be.oneOf([\"DE\", \"PE\", \"GB\"]);",
+							"});",
+							"",
+							"pm.test(\"Test validate altSpellings is in UK\", () => {",
+							"  pm.expect(jsonData.altSpellings[2]).to.eql(\"Great Britain\");",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/alpha/GB",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"alpha",
+						"GB"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get ZX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code name has OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Status code name has Not Found\", function () {",
+							"    pm.response.to.have.status(\"Not Found\");",
+							"});",
+							"",
+							"pm.test(\"Name of Country Zamir Xeno\", function(){",
+							"    pm.expect(jsonData.name).to.eql(\"Zamir Xeno\");",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/alpha/ZX",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"alpha",
+						"ZX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"Created\");",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nuevo Peru\",\n    \"alpha2\": \"NP\",\n    \"alpha3\": \"SOL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/country",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"country"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"const key = pm.collectionVariables.get(\"key\");",
+					"pm.request.addQueryParams(\"access_key=abea0078f4fdf15cf71249fed84aaf25\");",
+					"//pm.request.addQueryParams(\"access_key=\"+key);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://api.countrylayer.com/v2"
+		},
+		{
+			"key": "key",
+			"value": "5ba48102dc98da6aefc8f48f88692841"
+		},
+		{
+			"key": "base_url_mockup",
+			"value": "http://Luiss-MacBook-Air.local:8081/v2",
+			"type": "string"
+		}
+	]
+}
