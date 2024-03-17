@@ -17,7 +17,9 @@ Clone the repo
    git clone git@github.com:lruizajax/countrylayer.git
    ```
 
-### Execution (Rate limit: 1 per second limit of API{429})
+### Execution 
+
+#### (Rate limit: 1 per second limit of API{429})
 
 Postman, import the collection "Country Layer API.postman_collection.json" located in the resources/postman folder, and test all requests
 
